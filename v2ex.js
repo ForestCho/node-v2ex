@@ -66,9 +66,13 @@ v2ex.prototype = {
       .end(function(err, res) {
         $ = cheerio.load(res.text);
         var iptonce = $('input');
+        var paramsName = iptonce[1].attribs.name;
+        var paramsPwd = iptonce[2].attribs.name; 
         that.account.once = iptonce[3].attribs.value;
+        that.account[paramsName] = that.account.u;
+        that.account[paramsPwd] = that.account.p;
         var setPreCookie = res.headers['set-cookie'];
-        that.cookie.value = setPreCookie[0] + ";" + setPreCookie[1];
+        that.cookie.value = setPreCookie[0] + ";" + setPreCookie[1]; 
         superagent
           .post(loginUrl)
           .set(headers)
@@ -129,6 +133,7 @@ v2ex.prototype = {
       .end(function(err, res) {
         var setTabCookie = res.headers['set-cookie'];
         that.cookie.value = setTabCookie[0] + ";" + setTabCookie[1] + ";" + that.cookie.value;
+        console.log(setTabCookie.join());
         that.cookie.expires = setTabCookie.join().match(/expires=(.*);/)[0];
         $ = cheerio.load(res.text);
         var name = $('.top')[1].children[0].data;
