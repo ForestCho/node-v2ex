@@ -5,3 +5,8 @@
 2. npm install
 3. 修改`config.js`里面的账户参数，包括v2ex账户和及邮箱地址。
 3. node app.js
+
+
+### 示例
+
+![](http://ww3.sinaimg.cn/large/5f13eab3gw1f4ddwfz392j20qd030t9n.jpg)
